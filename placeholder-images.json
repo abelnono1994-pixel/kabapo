@@ -1,0 +1,130 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A festive background for the hero section of Inoubliable events.",
+      "imageUrl": "https://images.unsplash.com/photo-1553802929-bf2723a0125f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGFydHklMjBjZWxlYnJhdGlvbnxlbnwwfHx8fDE3Njg2NTY5MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "party celebration"
+    },
+    {
+      "id": "service-photographe",
+      "description": "A photographer capturing an event.",
+      "imageUrl": "https://images.unsplash.com/photo-1519638831568-d9897f54ed69?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "event photographer"
+    },
+    {
+      "id": "service-video",
+      "description": "A videographer filming an event.",
+      "imageUrl": "https://images.unsplash.com/photo-1582106239533-596a35f795c3?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "event videographer"
+    },
+    {
+      "id": "service-drone",
+      "description": "A drone flying over a wedding.",
+      "imageUrl": "https://images.unsplash.com/photo-1518350198889-a21235517b43?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "drone wedding"
+    },
+    {
+      "id": "service-logistique",
+      "description": "Event logistics setup with chairs and tables.",
+      "imageUrl": "https://images.unsplash.com/photo-1561063489-c40333a36412?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "event setup"
+    },
+    {
+      "id": "service-traiteur",
+      "description": "A catering buffet with various dishes.",
+      "imageUrl": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1287&auto=format&fit=crop",
+      "imageHint": "catering food"
+    },
+    {
+      "id": "service-boissons",
+      "description": "A bar with a selection of drinks.",
+      "imageUrl": "https://images.unsplash.com/photo-1514362545857-3bc7dca4c3ba?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "event drinks"
+    },
+    {
+      "id": "service-gateaux",
+      "description": "A beautiful wedding cake.",
+      "imageUrl": "https://images.unsplash.com/photo-1616690134346-6a5dd5f9d120?q=80&w=1287&auto=format&fit=crop",
+      "imageHint": "wedding cake"
+    },
+    {
+      "id": "service-sonorisation",
+      "description": "Sound system and DJ equipment at a party.",
+      "imageUrl": "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "event music"
+    },
+    {
+      "id": "avatar-1",
+      "description": "Avatar for Marie & Jean",
+      "imageUrl": "https://images.unsplash.com/photo-1672184702625-71ddc099768e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb3VwbGUlMjBwaG90b3xlbnwwfHx8fDE3NzAyMzExODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "couple photo"
+    },
+    {
+      "id": "avatar-2",
+      "description": "Avatar for Paul D.",
+      "imageUrl": "https://images.unsplash.com/photo-1582745699869-45a9011036f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYW4lMjBwaG90b3xlbnwwfHx8fDE3NzAyMzExODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man photo"
+    },
+    {
+      "id": "avatar-3",
+      "description": "Avatar for Sophie L.",
+      "imageUrl": "https://images.unsplash.com/photo-1589697547048-962940abc062?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHBob3RvfGVufDB8fHx8MTc3MDIzMTE4NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman photo"
+    },
+    {
+      "id": "gallery-1",
+      "description": "Wedding dinner table setup.",
+      "imageUrl": "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "wedding dinner"
+    },
+    {
+      "id": "gallery-2",
+      "description": "Guests dancing at a party.",
+      "imageUrl": "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "wedding party"
+    },
+    {
+      "id": "gallery-3",
+      "description": "Corporate event conference.",
+      "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "corporate event"
+    },
+    {
+      "id": "gallery-4",
+      "description": "Birthday cake with candles.",
+      "imageUrl": "https://images.unsplash.com/photo-1586950941444-a020a3541416?q=80&w=1287&auto=format&fit=crop",
+      "imageHint": "birthday cake"
+    },
+    {
+      "id": "gallery-5",
+      "description": "Close-up of a bride's bouquet.",
+      "imageUrl": "https://images.unsplash.com/photo-1572202283453-39049a8ce4e8?q=80&w=1287&auto=format&fit=crop",
+      "imageHint": "wedding bouquet"
+    },
+    {
+      "id": "gallery-6",
+      "description": "Friends toasting with drinks.",
+      "imageUrl": "https://images.unsplash.com/photo-1609240893975-4c8a5c37851a?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "friends toast"
+    },
+    {
+      "id": "service-autre",
+      "description": "A team brainstorming ideas for a special event request.",
+      "imageUrl": "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=1170&auto=format&fit=crop",
+      "imageHint": "special request"
+    },
+    {
+      "id": "contact-ceo",
+      "description": "Avatar for the CEO",
+      "imageUrl": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMG1hbGV8ZW58MHx8fHwxNzIyMDIxMDUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male portrait"
+    },
+    {
+      "id": "contact-hr",
+      "description": "Avatar for the HR Director",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb3J0cmFpdCUyMGZlbWFsZXxlbnwwfHx8fDE3MjIwMjEwODZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "female portrait"
+    }
+  ]
+}
