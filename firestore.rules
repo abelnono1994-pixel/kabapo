@@ -1,0 +1,129 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // --- RULES FOR PUBLIC COLLECTION GROUP QUERIES ---
+    // These allow the app to fetch all reviews, services, and event types 
+    // across all shops for the homepage and discovery features.
+    
+    match /{path=**}/reviews/{reviewId} {
+      allow list: if true;
+    }
+    
+    match /{path=**}/services/{serviceId} {
+      allow list: if true;
+    }
+    
+    match /{path=**}/eventTypes/{eventTypeId} {
+      allow list: if true;
+    }
+    
+    match /{path=**}/bookings/{bookingId} {
+      // Users can list their own bookings via collection group queries
+      allow list: if isSignedIn() && (request.query.userId == request.auth.uid || isAdmin());
+    }
+
+    // --- HELPER FUNCTIONS ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isDesignatedSuperAdmin() {
+      // Explicit recognition of the admin email for bootstrapping and security
+      return isSignedIn() && request.auth.token.email == 'abelngansop@gmail.com';
+    }
+
+    function getUserData(userId) {
+      return get(/databases/$(database)/documents/users/$(userId)).data;
+    }
+    
+    function getUserRole(userId) {
+      let data = get(/databases/$(database)/documents/users/$(userId)).data;
+      return data != null ? data.role : 'none';
+    }
+    
+    function isSuperAdmin() {
+      return isSignedIn() && (getUserRole(request.auth.uid) == 'superadmin' || isDesignatedSuperAdmin());
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (getUserRole(request.auth.uid) == 'admin' || isSuperAdmin());
+    }
+    
+    function isShopAdmin(shopId) {
+      return exists(/databases/$(database)/documents/shops/$(shopId)/admins/$(request.auth.uid));
+    }
+
+
+    // --- GLOBAL COLLECTIONS ---
+
+    // USERS: Global user collection
+    match /users/{userId} {
+      allow get: if isOwner(userId) || isAdmin();
+      allow list: if isAdmin();
+
+      // allow create: 
+      // 1. A user can create their own 'client' profile.
+      // 2. A designated user can create their own 'superadmin' profile.
+      allow create: if (isOwner(userId) && (request.resource.data.role == 'client' || (request.resource.data.role == 'superadmin' && isDesignatedSuperAdmin()))) || isSuperAdmin();
+
+      allow update: if (isOwner(userId) && 
+                       (request.resource.data.role == resource.data.role || (request.resource.data.role == 'superadmin' && isDesignatedSuperAdmin())) && 
+                        (request.resource.data.shopId == resource.data.shopId || (resource.data.role == 'client' && request.resource.data.role == 'shop_admin'))
+                      )
+                    || isAdmin();
+
+      allow delete: if isOwner(userId) || isSuperAdmin();
+    }
+    
+    // SHOPS: Top-level collection
+    match /shops/{shopId} {
+      allow get, list: if true;
+      allow create: if isSignedIn() && request.resource.data.ownerId == request.auth.uid;
+      allow update: if (isShopAdmin(shopId) && request.resource.data.ownerId == resource.data.ownerId) || isAdmin();
+      allow delete: if isSuperAdmin();
+
+      // SHOP SUB-COLLECTIONS
+      match /admins/{userId} {
+        allow read, write: if isShopAdmin(shopId) || isAdmin();
+      }
+      
+      match /services/{serviceId} {
+        allow get, list: if true;
+        allow create, update, delete: if isShopAdmin(shopId) || isAdmin();
+      }
+
+      match /eventTypes/{eventTypeId} {
+        allow get, list: if true;
+        allow create, update, delete: if isShopAdmin(shopId) || isAdmin();
+      }
+
+      match /gallery/{galleryImageId} {
+        allow get, list: if true;
+        allow create, update, delete: if isShopAdmin(shopId) || isAdmin();
+      }
+
+      match /bookings/{bookingId} {
+        allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+        allow get: if isOwner(resource.data.userId) || isShopAdmin(shopId) || isAdmin();
+        allow list: if isShopAdmin(shopId) || (isSignedIn() && request.query.userId == request.auth.uid);
+        allow update, delete: if isShopAdmin(shopId) || isAdmin();
+      }
+
+      match /reviews/{reviewId} {
+        allow get: if resource.data.status == 'approved' || isShopAdmin(shopId) || isAdmin();
+        allow list: if true; 
+        allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid && request.resource.data.status == 'pending';
+        allow update, delete: if isShopAdmin(shopId) || isAdmin();
+      }
+
+      match /subscriptions/{subscriptionId} {
+        allow read, write: if isShopAdmin(shopId) || isAdmin();
+      }
+    }
+  }
+}

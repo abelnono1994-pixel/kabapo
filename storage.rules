@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isShopAdmin(shopId) {
+      // Check if the user is listed as an admin for the shop in Firestore.
+      return request.auth != null && exists(/databases/(default)/documents/shops/$(shopId)/admins/$(request.auth.uid));
+    }
+
+    function isPlatformAdmin() {
+      // Check if the user has an admin or superadmin role in Firestore.
+      let userRole = get(/databases/(default)/documents/users/$(request.auth.uid)).data.role;
+      return request.auth != null && (userRole == 'admin' || userRole == 'superadmin');
+    }
+
+    match /shops/{shopId}/{allPaths=**} {
+      // Anyone can read images/videos from a shop's storage. This is for public display.
+      allow read: if true;
+
+      // Only an admin of that shop or a platform admin can upload/update/delete files.
+      allow write: if isShopAdmin(shopId) || isPlatformAdmin();
+    }
+  }
+}
